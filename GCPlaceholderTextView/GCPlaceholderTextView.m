@@ -93,21 +93,21 @@
 
 - (void) beginEditing:(NSNotification*) notification {
     if ([self.realText isEqualToString:self.placeholder]) {
-        super.text = nil;
+        self.text = nil;
         self.textColor = self.realTextColor;
     }
 }
 
 - (void) endEditing:(NSNotification*) notification {
     if ([self.realText isEqualToString:@""] || self.realText == nil) {
-        super.text = self.placeholder;
         self.textColor = self.placeholderColor;
+        [super setText:self.placeholder];
     }
 }
 
 - (void) setTextColor:(UIColor *)textColor {
     if ([self.realText isEqualToString:self.placeholder]) {
-        if ([textColor isEqual:self.placeholderColor]){
+        if (textColor==nil || [textColor isEqual:self.placeholderColor]){
              [super setTextColor:textColor];
         } else {
             self.realTextColor = textColor;
@@ -125,7 +125,6 @@
 - (void)dealloc {
     [super dealloc];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
 }
 
 @end
