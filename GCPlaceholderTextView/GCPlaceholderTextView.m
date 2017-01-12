@@ -79,7 +79,7 @@
         super.text = text;
     }
     
-    if ([text isEqualToString:self.placeholder] || text == nil) {
+    if ([text isEqualToString:self.placeholder]) {
         self.textColor = self.placeholderColor;
     }
     else {
@@ -100,8 +100,8 @@
 
 - (void) endEditing:(NSNotification*) notification {
     if ([self.realText isEqualToString:@""] || self.realText == nil) {
-        self.textColor = self.placeholderColor;
         [super setText:self.placeholder];
+        self.textColor = self.placeholderColor;
     }
 }
 
